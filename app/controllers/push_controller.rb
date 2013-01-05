@@ -10,7 +10,7 @@ class PushController < ApplicationController
 
 		# Shortcut
 		req = Net::HTTP::Post.new(uri.path)
-		req.set_form_data({'CHECKIN_ID'=>checkin_id, 'url'=>url})
+		req.set_form_data({'CHECKIN_ID'=>checkin_id, 'url'=>new_song_url})
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = true
 		response = http.request(req)
