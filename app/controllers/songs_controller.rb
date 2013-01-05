@@ -1,20 +1,87 @@
 class SongsController < ApplicationController
-	def new
-		@song=Song.new
-		respond_to do |format|
-	      format.html # new.html.erb
-	      format.json { render json: @song }
-	    end
-	end
-	def create
-		@song= Song.new(params[:song])
-		respond_to do |format|
-	      if @song.save
-	        logger.info("Song:"+@song.query+" saved")
-	      else
-	        format.html { render action: "new" }
-	        format.json { render json: @song.errors, status: :unprocessable_entity }
-	      end
-	    end
-	end
+
+  # GET /songs
+  # GET /songs.json
+  def index
+    @songs = Song.order('created_at ASC')
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @songs }
+    end
+
+    # @songs.delete_all
+  end
+
+  # GET /songs/1
+  # GET /songs/1.json
+  def show
+    @song = Song.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @song }
+    end
+  end
+
+  # GET /songs/new
+  # GET /songs/new.json
+  def new
+    @song = Song.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @song }
+    end
+  end
+
+  # GET /songs/1/edit
+  def edit
+    @song = Song.find(params[:id])
+  end
+
+  # POST /songs
+  # POST /songs.json
+  def create
+    @song = Song.new(params[:song])
+
+    respond_to do |format|
+      if @song.save
+        format.html { redirect_to @song, notice: 'Song was successfully created.' }
+        format.json { render json: @song, status: :created, location: @song }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /songs/1
+  # PUT /songs/1.json
+  def update
+    @song = Song.find(params[:id])
+
+    respond_to do |format|
+      if @song.update_attributes(params[:song])
+        format.html { redirect_to @song, notice: 'Song was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /songs/1
+  # DELETE /songs/1.json
+  def destroy
+    @song = Song.find(params[:id])
+    @song.destroy
+
+    respond_to do |format|
+      format.html { redirect_to songs_url }
+      format.json { head :no_content }
+    end
+  end
+>>>>>>> d548df6e04efb6849e60f3c61e660d58c7fbee04
 end

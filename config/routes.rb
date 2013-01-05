@@ -1,5 +1,7 @@
 Maitredj::Application.routes.draw do
   
+  resources :songs
+
   resources :checkins
 
   resource :user
@@ -16,6 +18,7 @@ Maitredj::Application.routes.draw do
 
   match 'push' => 'push#index'
   root :to => 'users#new'
+  match 'display' => 'root#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
