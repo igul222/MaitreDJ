@@ -1,11 +1,11 @@
 require 'uri'
 class PushController < ApplicationController
 	def index
-		@event=JSON.parse(URI.decode(params[:checkin]))
-		logger.info(@event)
+		@event=JSON.parse(URI.unescape(params[:checkin]))
+		logger.info("Event:"+@event)
 		#@event=JSON.parse(request.body.read)
 		checkin_id=@event[:id]
-		logger.info(checkin_id)
+		logger.info("ID"+checkin_id)
 		uri = URI.parse("https://api.foursquare.com/v2/checkins/"+checkin_id+"/reply")
 
 		# Shortcut
