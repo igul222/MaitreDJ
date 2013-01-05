@@ -17,9 +17,9 @@ class Clients::FoursquareClientsController < ApplicationController
 
 		Rails.cache.write(user.foursquare_id, token.token)
 		
-		console.log 'WRITTEN TO GLOBAL HACKS'
-		console.log user.foursquare_id 
-		console.log token.token
+		Logger.info 'WRITTEN TO GLOBAL HACKS'
+		Logger.info user.foursquare_id 
+		Logger.info token.token
 
 		session[:user_id] = user.id
 		redirect_to user_path
