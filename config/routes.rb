@@ -16,6 +16,7 @@ Maitredj::Application.routes.draw do
 
 
   root :to => 'users#new'
+  match 'display' => 'root#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

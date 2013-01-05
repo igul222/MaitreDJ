@@ -2,12 +2,14 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.order('created_at ASC')
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @songs }
     end
+
+    # @songs.delete_all
   end
 
   # GET /songs/1
