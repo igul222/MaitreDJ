@@ -9,6 +9,9 @@ class PushController < ApplicationController
 		uri = URI.parse("https://api.foursquare.com/v2/checkins/"+checkin_id+"/reply")
 
 		# Shortcut
-		response = Net::HTTP.post_form(uri, {"CHECKIN_ID" => checkin_id, "url" => new_song_url})
+		#response = Net::HTTP.post_form(uri, {"CHECKIN_ID" => checkin_id, "url" => new_song_url})
+		logger.info("CHECKIN_ID:"+checkin_id.inspect)
+		logger.info("URI:"+uri.inspect)
+		logger.info("URL:"+new_song_url.inspect)
 	end
 end
