@@ -12,7 +12,9 @@ Maitredj::Application.routes.draw do
 		end
 	end
 
+  resources :song
 
+  match 'push' => 'push#index'
   root :to => 'users#new'
 
   # The priority is based upon order of creation:
