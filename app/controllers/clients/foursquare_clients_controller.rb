@@ -14,6 +14,12 @@ class Clients::FoursquareClientsController < ApplicationController
 		end
 		token = client.auth_code.get_token params[:code], redirect_uri: callback_foursquare_clients_url
 		user = FoursquareUser.find_or_create_by_access_token(token.token)
+
+		GLOBAL_HACKS[user.foursquare_id] = token.token
+		
+		console.log 'GLOBAL HACKS'
+		console.log GLOBAL_HACKS.inspect
+
 		session[:user_id] = user.id
 		redirect_to user_path
 	end
