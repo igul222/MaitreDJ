@@ -1,6 +1,7 @@
 class PushController < ApplicationController
 	def index
-		@event=JSON.parse(request.body.read)
+		logger.info(request.body.read)
+		#@event=JSON.parse(request.body.read)
 		checkin_id=@event.CHECKIN_ID
 		uri = URI.parse("https://api.foursquare.com/v2/checkins/"+checkin_id+"/reply")
 
