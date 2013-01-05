@@ -12,7 +12,7 @@ class PushController < ApplicationController
 
 		# Shortcut
 		req = Net::HTTP::Post.new(uri.path)
-		req.set_form_data({'url'=>new_song_url, 'text' => 'hello world', 'oauth_token' => GLOBAL_HACK[@event['user']['id']]})
+		req.set_form_data({'url'=>new_song_url, 'text' => 'hello world', 'oauth_token' => Rails.cache.read(@event['user']['id'])})
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = true
 		response = http.request(req)
