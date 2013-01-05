@@ -12,7 +12,7 @@ Maitredj::Application.routes.draw do
 		end
 	end
 
-  resources :song
+  resources :songs
 
   match 'push' => 'push#index'
   root :to => 'users#new'
