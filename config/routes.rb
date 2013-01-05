@@ -1,5 +1,7 @@
 Maitredj::Application.routes.draw do
   
+  resources :songs
+
   resources :checkins
 
   resource :user
