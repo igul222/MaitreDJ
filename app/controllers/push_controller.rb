@@ -2,7 +2,7 @@ require 'uri'
 class PushController < ApplicationController
 	def index
 		@event=JSON.parse(URI.decode(params[:checkin]))
-		logger.info(request.body.read)
+		logger.info(@event)
 		#@event=JSON.parse(request.body.read)
 		checkin_id=@event[:id]
 		logger.info(checkin_id)
