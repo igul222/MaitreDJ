@@ -4,8 +4,8 @@ class PushController < ApplicationController
 		@event=JSON.parse(URI.unescape(params[:checkin]))
 		logger.info("Event:"+@event.inspect)
 		#@event=JSON.parse(request.body.read)
-		checkin_id=@event[:id]
-		logger.info("ID"+checkin_id.inpsect)
+		checkin_id=@event['id']
+		logger.info("ID"+checkin_id.inspect)
 		uri = URI.parse("https://api.foursquare.com/v2/checkins/"+checkin_id+"/reply")
 
 		# Shortcut
