@@ -20,6 +20,6 @@ class PushController < ApplicationController
 		logger.info("URI:"+uri.inspect)
 		logger.info("URL:"+new_song_url.inspect)
 
-		#render :text => 'OK'
+		render :text => 'OK'
 	end
 end
