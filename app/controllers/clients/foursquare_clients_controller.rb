@@ -9,7 +9,8 @@ class Clients::FoursquareClientsController < ApplicationController
 
 	def callback
 		if params[:error]
-			Log.error(params[:error])
+			debugger
+			Logger.error(params[:error])
 		end
 		token = client.auth_code.get_token params[:code], redirect_uri: callback_foursquare_clients_url
 		user = FoursquareUser.find_or_create_by_access_token(token.token)
