@@ -1,4 +1,6 @@
 require 'uri'
+require 'net/http'
+
 class PushController < ApplicationController
 	def index
 		@event=JSON.parse(URI.unescape(params[:checkin]))
@@ -10,7 +12,7 @@ class PushController < ApplicationController
 
 		# Shortcut
 		req = Net::HTTP::Post.new(uri.path)
-		req.set_form_data({'url'=>new_song_url})
+		req.set_form_data({'url'=>new_song_url, 'text' => 'hello world', 'oauth_token' => Rails.cache.read(@event['user']['id'])})
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = true
 		response = http.request(req)
@@ -19,6 +21,8 @@ class PushController < ApplicationController
 		logger.info("CHECKIN_ID:"+checkin_id.inspect)
 		logger.info("URI:"+uri.inspect)
 		logger.info("URL:"+new_song_url.inspect)
+
+		logger.info("BODY:" + response.body.inspect)
 
 		render :text => 'OK'
 	end
