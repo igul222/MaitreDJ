@@ -1,4 +1,7 @@
 downloadSongs = function(callback) {
+  if((typeof(window.rootpagething)==='undefined') || !window.rootpagething)
+    return;
+
   return $.get('/songs.json', function(data) {
     window.songs=[];
     window.songs.push.apply(window.songs, data);
