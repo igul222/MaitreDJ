@@ -3,7 +3,10 @@
 <script type="text/javascript" src="//use.typekit.net/wts2npf.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
+<h1>ENTER A SONG NAME AND SUBMIT!</h1>
 
-<h1>CONNECT <span style="color:#0f0">JAMSESH</span> TO YOUR FOURSQUARE!!!</h1>
+= form_for(@song) do |f|
+  = f.text_field :query
+  %br
+  = f.submit 'ADD SONG'
 
-<a href='#{new_foursquare_client_path}'><img style='margin-left:auto;margin-right:auto;' src='https://playfoursquare.s3.amazonaws.com/press/logo/connect-white@2x.png' /></a>
