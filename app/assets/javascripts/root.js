@@ -79,7 +79,12 @@ function onPlayerStateChange(event) {
         playVideo();
     }
 }
-
+$(document).keydown(function(e){
+    if (e.keyCode == 39) { 
+       playVideo();
+       return false;
+    }
+});
 
 $(function() {
   window.songs = [];
@@ -91,5 +96,5 @@ $(function() {
     });
     performQueries(queries);
   });
-}, 5000);
+}, 1000);
 });

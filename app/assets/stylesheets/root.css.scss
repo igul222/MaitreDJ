@@ -2,11 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body{
-	background-color:black;
+  background-color:black;
+  font-family:"futura-pt", futura, sans-serif;
+  font-size: 28px;
+  line-height: 30px;
 }
 .item{
+	float:left;
+	width:200px;
+	display:inline-block;
 	padding:10px 10px 0 10px;
 	border-bottom: 2px solid grey;
+	margin-left:10px;
+	margin-bottom:10px;
+	height: 310px;
+	overflow:hidden;
+	background-color: rgba(250, 250, 250, 0.7);
 }
 #player{
 	padding:0;
@@ -15,12 +26,13 @@ body{
 	top:0;
 	width:100%;
 	height:100%;
+	z-index:0;
 }
 #queue{
+	opacity:0.8;
 	font-size:16px;
-	background-color: rgba(250, 250, 250, 0.7);
-	width:10%;
 	position:fixed;
+	top:0px;
 	left:0px;
 	z-index:1;
 }
@@ -28,5 +40,10 @@ body{
 	width:100%;
 }
 .caption{
+	margin-top: 0;
+	margin-bottom: 0;
 	width:100%;
+	font-size: 28px;
+	font-color: black;
+	text-transform: capitalize;
 }
