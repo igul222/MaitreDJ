@@ -35,8 +35,8 @@ performQueries = function(keywords) {
 
 renderQueue = function() {
   $('#queue').html(_.map(window.youtubeQueue, function(ytItem) {
-    return '<img class="thumbnail" src="'+ytItem.thumbnail.hqDefault+'" />' +
-      '<p class="caption">'+ytItem.title+'</p>';
+    return '<div class="item"><img class="thumbnail" src="'+ytItem.thumbnail.hqDefault+'" />' +
+      '<p class="caption">'+ytItem.title+'</p></div>';
   }).join(''));
 };
 
@@ -50,6 +50,11 @@ playVideo = function() {
     window.YTPlayer = new YT.Player('player', {
         height: '390',
         width: '640',
+        playerVars:{
+          iv_load_policy: '3',
+          controls: '0',
+          showinfo: '0'
+        },
         videoId: video.id,
         events: {
           'onReady': onPlayerReady,
