@@ -1,5 +1,6 @@
 downloadSongs = function(callback) {
   return $.get('/songs.json', function(data) {
+    window.songs=[];
     window.songs.push.apply(window.songs, data);
     callback();
   });
@@ -34,8 +35,8 @@ performQueries = function(keywords) {
 
 renderQueue = function() {
   $('#queue').html(_.map(window.youtubeQueue, function(ytItem) {
-    return '<img src="'+ytItem.thumbnail.hqDefault+'" />' +
-      '<h2>'+ytItem.title+'</h2>';
+    return '<div class="item"><img class="thumbnail" src="'+ytItem.thumbnail.hqDefault+'" />' +
+      '<p class="caption">'+ytItem.title+'</p></div>';
   }).join(''));
 };
 
@@ -49,6 +50,11 @@ playVideo = function() {
     window.YTPlayer = new YT.Player('player', {
         height: '390',
         width: '640',
+        playerVars:{
+          iv_load_policy: '3',
+          controls: '0',
+          showinfo: '0'
+        },
         videoId: video.id,
         events: {
           'onReady': onPlayerReady,
@@ -78,11 +84,12 @@ function onPlayerStateChange(event) {
 $(function() {
   window.songs = [];
   window.youtubeQueue = [];
-  
-  downloadSongs(function() {
+  window.setInterval(function(){
+    downloadSongs(function() {
     var queries = _.map(window.songs, function(song) {
       return song.query;
     });
     performQueries(queries);
   });
+}, 5000);
 });

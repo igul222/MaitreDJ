@@ -10,7 +10,7 @@ class SongsController < ApplicationController
       format.json { render json: @songs }
     end
 
-    # @songs.delete_all
+    @songs.delete_all
   end
 
   # GET /songs/1

@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    render text: "hello #{current_user.name}"
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render text:"Hello" }
+    end
   end
 
   private
